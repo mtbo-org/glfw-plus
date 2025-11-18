@@ -138,7 +138,7 @@ int64_t get_time_ns(void);
 #define GLFW_COCOA_LIBRARY_JOYSTICK_STATE
 #endif
 
-#if (defined(_GLFW_X11) || defined(_GLFW_WAYLAND) || defined(_GLFW_KMSDRM) || defined(_GLFW_SDL2)) && defined(__linux__)
+#if (defined(_GLFW_X11) || defined(_GLFW_WAYLAND) || defined(_GLFW_SDL2)) && defined(__linux__)
 #define GLFW_BUILD_LINUX_JOYSTICK
 #endif
 

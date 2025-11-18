@@ -348,16 +348,12 @@ GLFWbool _glfwInitKMSDRM(void) {
     if (!_glfwInitKeyboardsLinux())
         return GLFW_FALSE;
 
-    if (!_glfwInitJoysticksLinux())
-        return GLFW_FALSE;
-
     return GLFW_TRUE;
 }
 
 // Terminate the KMSDRM platform
 void _glfwTerminateKMSDRM(void) {
     _glfwTerminateEGL();
-    _glfwTerminateJoysticksLinux();
     if (_glfw.kmsdrm.drm.fd >= 0)
         close(_glfw.kmsdrm.drm.fd);
     debug_printf("_glfwTerminateKMSDRM: Terminating DRM fd=%d [OK]\n", _glfw.kmsdrm.drm.fd);

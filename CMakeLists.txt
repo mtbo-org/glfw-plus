@@ -12,6 +12,7 @@ option(GLFW_BUILD_TESTS "Build the GLFW test programs" ${GLFW_STANDALONE})
 option(GLFW_BUILD_DOCS "Build the GLFW documentation" OFF)
 option(GLFW_INSTALL "Generate installation target" ON)
 
+include_directories("/usr/include/drm")
 include(GNUInstallDirs)
 include(CMakeDependentOption)
 

@@ -190,11 +190,6 @@ static void closeKeyboard() {
 
 GLFWbool _glfwInitKeyboardsLinux(void) {
     const char* dirname = "/dev/input";
-    _glfw.linjs.regexCompiled = (regcomp(&_glfw.linjs.regex, "^event[0-9]\\+$", 0) == 0);
-    if (!_glfw.linjs.regexCompiled) {
-        _glfwInputError(GLFW_PLATFORM_ERROR, "Linux: Failed to compile regex");
-        return GLFW_FALSE;
-    }
 
     int count = 0;
     DIR* dir = opendir(dirname);
@@ -202,10 +197,6 @@ GLFWbool _glfwInitKeyboardsLinux(void) {
         struct dirent* entry;
 
         while ((entry = readdir(dir))) {
-            regmatch_t match;
-
-            if (regexec(&_glfw.linjs.regex, entry->d_name, 1, &match, 0) != 0)
-                continue;
 
             char path[PATH_MAX];
             snprintf(path, sizeof(path), "%s/%s", dirname, entry->d_name);
@@ -227,16 +218,6 @@ GLFWbool _glfwInitKeyboardsLinux(void) {
 
 void _glfwTerminateKeyboardsLinux(void) {
     closeKeyboard();
-
-    if (_glfw.linjs.inotify > 0) {
-        if (_glfw.linjs.watch > 0)
-            inotify_rm_watch(_glfw.linjs.inotify, _glfw.linjs.watch);
-
-        close(_glfw.linjs.inotify);
-    }
-
-    if (_glfw.linjs.regexCompiled)
-        regfree(&_glfw.linjs.regex);
 }
 
 GLFWbool _glfwPollKeyboardLinux() {

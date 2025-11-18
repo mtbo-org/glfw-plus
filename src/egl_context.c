@@ -290,7 +290,7 @@ static void swapBuffersEGL(_GLFWwindow* window) {
             .version = 2,
             .page_flip_handler = page_flip_handler,
     };
-    struct gbm_bo* next_bo;
+    struct gbm_bo* next_bo = 0;
     int waiting_for_flip = 1;
     int ret;
 
