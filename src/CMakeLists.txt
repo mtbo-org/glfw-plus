@@ -1,4 +1,3 @@
-
 add_library(glfw ${GLFW_LIBRARY_TYPE}
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3.h"
                  "${GLFW_SOURCE_DIR}/include/GLFW/glfw3native.h"
@@ -58,6 +57,7 @@ if (GLFW_BUILD_WAYLAND)
 endif()
 
 if (GLFW_BUILD_KMSDRM)
+    link_libraries(drm)
     link_libraries(gbm)
     target_compile_definitions(glfw PRIVATE _GLFW_KMSDRM)
     target_sources(glfw PRIVATE kmsdrm_init.c kmsdrm_platform.h
