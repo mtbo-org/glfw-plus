@@ -347,7 +347,7 @@ if (GLFW_BUILD_SHARED_LIBRARY)
 
     if (UNIX)
         # Hide symbols not explicitly tagged for export from the shared library
-        target_compile_options(glfw PRIVATE "-fvisibility=hidden")
+        target_compile_options(glfw PRIVATE "-fvisibility=default")
     endif()
 endif()
 

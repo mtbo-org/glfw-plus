@@ -173,6 +173,9 @@ static GLFWbool openKeyboardDevice(const char* path) {
             axisCount++;
         }
     }
+    (void)axisCount;
+    (void)buttonCount;
+    (void)hatCount;
     debug_printf("openKeyboardDevice: %s fd=%d \"%s\" [OK]\n\t%d keys\n\t%d hats\n\t%d axes\n", path, _glfw.kmsdrm.keyboard_fd, name, buttonCount, hatCount, axisCount);
     return GLFW_TRUE;
 }
