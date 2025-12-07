@@ -57,8 +57,17 @@ if (GLFW_BUILD_WAYLAND)
 endif()
 
 if (GLFW_BUILD_KMSDRM)
-    link_libraries(drm)
-    link_libraries(gbm)
+    add_library(libgbm SHARED IMPORTED)
+    add_library(libdrm SHARED IMPORTED)
+
+    set_target_properties(libgbm PROPERTIES
+            IMPORTED_LOCATION "/opt/poky/4.0.9/sysroots/armv8a-poky-linux/usr/lib/libgbm.so"
+    )
+    set_target_properties(libdrm PROPERTIES
+            IMPORTED_LOCATION "/opt/poky/4.0.9/sysroots/armv8a-poky-linux/usr/lib/libdrm.so"
+    )
+
+    target_link_libraries(glfw PRIVATE libgbm libdrm)
     target_compile_definitions(glfw PRIVATE _GLFW_KMSDRM)
     target_sources(glfw PRIVATE kmsdrm_init.c kmsdrm_platform.h
     linux_keyboard.h linux_keyboard.c
