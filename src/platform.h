@@ -38,7 +38,7 @@
 #error "You must not define these; define zero or more _GLFW_<platform> macros instead"
 #endif
 
-#ifdef DEBUG
+#if defined(DEBUG)/* || 1*/
 #define debug_puts puts
 #define debug_printf printf
 #else

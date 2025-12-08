@@ -225,7 +225,7 @@ int init_drm(struct drm* drm, const char* device, const char* mode_str, int conn
             if (strcmp(current_mode->name, mode_str) == 0) {
                 if (vrefresh == 0 || current_mode->vrefresh == vrefresh) {
                     drm->mode = current_mode;
-                    debug_printf("init_drm: found requested mode %dx%d\n", current_mode->hdisplay, current_mode->vdisplay);
+                    debug_printf("init_drm: found requested mode %dx%d (%d)\n", current_mode->hdisplay, current_mode->vdisplay, current_mode->vrefresh);
                     break;
                 }
             } else {
